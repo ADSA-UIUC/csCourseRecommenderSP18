@@ -1,0 +1,36 @@
+<head></head>
+<body style="background-color: black;text-align:center">
+	<img style="opacity: 0.8" src="https://sites.google.com/site/chaitanyadatye/_/rsrc/1422845134846/home/Screen%20Shot%202015-02-01%20at%208.45.15%20PM.png" alt="logo">
+	<h1 style="color:#f1452f;font-size: 48px; font-family:'courier', sans-serif; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;">CS Class Recommender</h1>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<div style="font-size:26px; margin:auto; width: auto; color: white; text-align: center">
+		<p>Enter your classes and grades. Don't use spaces. Letter grades.</p>
+		<p>Example: 125,A,173,B</p>
+		<div style="border: 3px; border-color: #000000; border-radius:4px">	
+			<textarea id="gradeinput" rows = '2', cols = '50' style="padding:4px;border-color: #000000; height: 70px; width: 500px; font-size: 18px;font-family:'Segoe UI',arial, sans-serif">100,A,101,A,125,A-,173,B,225,B,233,B,241,B,374,B,357,B </textarea>
+		</div>
+	</div>
+	<div style="margin:auto; width: 300px">
+		<button class='button1' style= "font-size:26px; color:#FFFFFF;padding:4px; width:300px;margin-top: 12px;background-color:#e02342; border-radius: 4px;border: 1px">Enter</button>
+	<script> $(".button1").click(function(){
+		var message = document.getElementById("gradeinput").value;
+		var request = $.ajax({
+			url: 'http://0.0.0.0:5000/getRec',
+			data: {responses: message},
+			dataType:'text'
+		});
+		request.done(function(msg){
+			console.log(msg)
+			$("#classes").append("Classes to take: " + msg)
+		});
+		request.fail(function(request, status, error){
+			console.log("something messed up")
+		});
+	});
+	</script>
+	</div>
+	<div id="classes" style="color:white; margin-top:12px;font-size:26px"></div>
+	<img src="Figure_1.png" alt="na">
+</body>
+
+#1a2738
